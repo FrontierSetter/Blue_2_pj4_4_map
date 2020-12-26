@@ -10,42 +10,66 @@
   </div>
 </template>
 
+<script src="sdfasf"></script>
+
 <script>
-  import sctterMap from '@/components/sctterMap'
-  import dotMap from '@/components/dotMap'
-  import heatMap from '@/components/heatMap'
-  import allMap from "@/components/allMap"
+  // import sctterMap from '@/components/sctterMap'
+  // import dotMap from '@/components/dotMap'
+  // import heatMap from '@/components/heatMap'
+  // import allMap from "@/components/allMap"
+  import hgl from "@/components/hgl"
+  import qys from "@/components/qys"
+  import cps from "@/components/cps"
   export default {
     name: 'home',
     components: {
-      sctterMap,
-      dotMap,
-      heatMap,
-      allMap
+      // sctterMap,
+      // dotMap,
+      // heatMap,
+      // allMap,
+      hgl,
+      qys,
+      cps
     },
     data() {
       return {
-        currenIndex: 'sctterMap',
-        mapList: [{
-            type: 'sctterMap',
-            name: '分布图',
+        currenIndex: 'hgl',
+        mapList: [
+          // {
+          //   type: 'sctterMap',
+          //   name: '分布图',
+          //   index: 1,
+          // },
+          // {
+          //   type: 'heatMap',
+          //   name: '热力图',
+          //   index: 2,
+          // },
+          // {
+          //   type: 'dotMap',
+          //   name: '散点图',
+          //   index: 3,
+          // },
+          // {
+          //   type: 'allMap',
+          //   name: '综合地图',
+          //   index: 4,
+          // },
+          {
+            type: 'hgl',
+            name: '合格率',
             index: 1,
           },
           {
-            type: 'heatMap',
-            name: '热力图',
+            type: 'qys',
+            name: '抽查企业数',
             index: 2,
           },
           {
-            type: 'dotMap',
-            name: '散点图',
+            type: 'cps',
+            name: '合格产品数',
             index: 3,
-          },
-          {
-            type: 'allMap',
-            name: '综合地图',
-            index: 4,
-          },
+          }
         ],
       }
     },

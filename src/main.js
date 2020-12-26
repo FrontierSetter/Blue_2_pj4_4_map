@@ -1,10 +1,13 @@
 import Vue from "vue"
 import App from "./App"
 import router from "./router"
+// import axios from 'axios';
 
 
 
 import "./styles/index.scss"
+
+// Vue.prototype.$axios = axios;
 
 
 new Vue({

@@ -15,7 +15,7 @@ function resolve(dir) {
 
 const prodConfig = merge(webpackConfig, {
   mode: "production",
-  devtool: 'none',
+  // devtool: 'none',
   optimization: {
     splitChunks: {
       chunks: 'all',
