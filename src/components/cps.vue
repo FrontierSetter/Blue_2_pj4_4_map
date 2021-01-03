@@ -136,6 +136,7 @@
                 } else {
                     echarts.registerMap('map', this.geoJson); //注册
                 }
+                
                 var option = {
                     timeline: {
                         data: this.timeTitle,
