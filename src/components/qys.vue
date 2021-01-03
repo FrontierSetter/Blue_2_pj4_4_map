@@ -16,6 +16,8 @@
     import myStore from '@/components/Store';
     // import axios from 'axios'
 
+    import china from 'echarts/map/json/china.json'
+
     export default {
         name: 'qys',
         mixins: [resize],
@@ -123,8 +125,15 @@
             initEcharts(mapData, pointData, sum, data_len) {
                 // console.log(data_len)
                 this.myChart = echarts.init(this.$refs.qys)
+                
+                var geoJSONChina = china;
+
+                // console.log('geoJsonEcharts')
+                // console.log(geoJSONChina)
+
+
                 if (this.parentInfo.length === 1) {
-                    echarts.registerMap('china', this.geoJson); //注册
+                    echarts.registerMap('china', geoJSONChina); //注册
                 } else {
                     echarts.registerMap('map', this.geoJson); //注册
                 }

@@ -14,6 +14,8 @@
     import echarts from 'echarts'
     import resize from "./mixins/resize";
     import myStore from '@/components/Store';
+    
+    import china from 'echarts/map/json/china.json'
     // import axios from 'axios'
 
     export default {
@@ -52,6 +54,7 @@
                             return;
                         }
                         let Json = areaNode.getSubFeatures();
+                        
                         if (Json.length > 0) {
                             that.geoJson.features = Json;
                         } else if (Json.length === 0) {
@@ -60,7 +63,36 @@
                             );
                             if (that.geoJson.features.length === 0) return;
                         }
+
+                        // console.log('geoJson')
+                        // console.log(that.geoJson.features)
+                        // console.log(that.geoJson)
+
+                        // for(var i=0,len=that.geoJson.features.length; i<len; i++){
+                        //     var sglProvinceProperties = that.geoJson.features[i].properties;
+                        //     var sglProvinceName = sglProvinceProperties.name;
+                        //     console.log(sglProvinceName)
+                        //     console.log(sglProvinceProperties.center)
+                        //     switch(sglProvinceName){
+                        //             case '内蒙古自治区':
+                        //                     that.geoJson.features[i].properties.center[0]=112.17;
+                        //                     that.geoJson.features[i].properties.center[1]=42.81;
+                        //                     break;
+                        //             case '四川'://def:101.778916,36.623178
+                        //                     that.geoJson.features[i].properties.center[0]=116.405285;
+                        //                     that.geoJson.features[i].properties.center[1]=39.904989;
+                        //                     break;
+                        //             case '北京市'://def:118.767413,32.041544
+                        //                     that.geoJson.features[i].properties.center[0]=112.17;
+                        //                     that.geoJson.features[i].properties.center[1]=42.81;
+                        //                     that.geoJson.features[i].properties.centroid[0]=112.17;
+                        //                     that.geoJson.features[i].properties.centroid[1]=42.81;
+                        //                     break;
+                        //         }
+                        // }
+
                         that.getMapData();
+
                     });
                 });
             },
@@ -123,11 +155,46 @@
             initEcharts(mapData, pointData, sum, data_len) {
                 // console.log(data_len)
                 this.myChart = echarts.init(this.$refs.hgl)
+
+                // for(var i=0,len=this.geoJson.features.length; i<len; i++){
+                //     var sglProvinceProperties = this.geoJson.features[i].properties;
+                //     var sglProvinceName = sglProvinceProperties.name;
+                //     switch(sglProvinceName){
+                //             case '内蒙古自治区':
+                //                     sglProvinceProperties.cp[0]=112.17;
+                //                     sglProvinceProperties.cp[1]=42.81;
+                //                     break;
+                //             case '四川'://def:101.778916,36.623178
+                //                         sglProvinceProperties.cp[0]=121.46;
+                //                         sglProvinceProperties.cp[1]=31.28;
+                //                     break;
+                //             case '江苏'://def:118.767413,32.041544
+                //                     sglProvinceProperties.cp[0]=119.767413;
+                //                     sglProvinceProperties.cp[1]=33.041544;
+                //                     break;
+                //         }
+                // }
+
+                // console.log('geoJson2')
+                // console.log(this.geoJson.features)
+                // console.log(this.geoJson)
+
+                // var chinaEchartsObj = echarts.getMap('china');
+                // var geoJSONChina = chinaEchartsObj.geoJson;
+                var geoJSONChina = china;
+
+                // console.log('geoJsonEcharts')
+                // console.log(geoJSONChina)
+
+
                 if (this.parentInfo.length === 1) {
-                    echarts.registerMap('china', this.geoJson); //注册
+                    echarts.registerMap('china', geoJSONChina); //注册
                 } else {
                     echarts.registerMap('map', this.geoJson); //注册
                 }
+
+                
+                
                 var option = {
                     timeline: {
                         data: this.timeTitle,
@@ -314,6 +381,9 @@
                     var xData = [],
                         yData = []
                     var min = mapData[item][mapData[item].length - 1].value
+                    if (min == 0){
+                        min = mapData[item][mapData[item].length - 2].value 
+                    }
                     var max = mapData[item][0].value
                     if (mapData[item].length === 1) {
                         min = 0
@@ -487,37 +557,37 @@
                 })
                 this.myChart.setOption(option, true)
                 this.myChart.off('click');
-                this.myChart.on('click', this.echartsMapClick);
+                // this.myChart.on('click', this.echartsMapClick);
             },
 
             //点击下钻
-            echartsMapClick(params) {
-                if (!params.data) {
-                    return
-                }
-                if (
-                    this.parentInfo[this.parentInfo.length - 1].code ==
-                    params.data.cityCode
-                ) {
-                    return;
-                }
-                let data = params.data;
-                this.parentInfo.push({
-                    cityName: data.name,
-                    code: data.cityCode
-                });
-                this.getGeoJson(data.cityCode);
+            // echartsMapClick(params) {
+            //     if (!params.data) {
+            //         return
+            //     }
+            //     if (
+            //         this.parentInfo[this.parentInfo.length - 1].code ==
+            //         params.data.cityCode
+            //     ) {
+            //         return;
+            //     }
+            //     let data = params.data;
+            //     this.parentInfo.push({
+            //         cityName: data.name,
+            //         code: data.cityCode
+            //     });
+            //     this.getGeoJson(data.cityCode);
 
-            },
-            //选择切换市县
-            chooseArea(val, index) {
-                if (this.parentInfo.length === index + 1) {
-                    return
-                }
-                this.parentInfo.splice(index + 1)
-                this.getGeoJson(this.parentInfo[this.parentInfo.length - 1].code);
+            // },
+            // //选择切换市县
+            // chooseArea(val, index) {
+            //     if (this.parentInfo.length === index + 1) {
+            //         return
+            //     }
+            //     this.parentInfo.splice(index + 1)
+            //     this.getGeoJson(this.parentInfo[this.parentInfo.length - 1].code);
 
-            }
+            // }
         }
     }
 </script>
