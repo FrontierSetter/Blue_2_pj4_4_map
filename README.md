@@ -51,3 +51,5 @@
 
 echarts社区：[https://gallery.echartsjs.com/explore.html?u=bd-4240785066&type=work#sort=rank~timeframe=all~author=all](https://gallery.echartsjs.com/explore.html?u=bd-4240785066&type=work#sort=rank~timeframe=all~author=all)
 
+cnpm run build
+

@@ -262,6 +262,7 @@
                             label: {
                                 normal: {
                                     show: true,
+                                    // color: "black", //省份标签字体颜色
                                     color: "rgb(249, 249, 249)", //省份标签字体颜色
                                     formatter: p => {
                                         switch (p.name) {
@@ -308,8 +309,9 @@
                                     shadowOffsetY: 6,
                                 },
                                 emphasis: {
-                                    areaColor: '#8dd7fc',
-                                    borderWidth: 1.6,
+                                    // areaColor: '#8dd7fc',
+                                    borderColor: 'black',
+                                    borderWidth: 2.5,
                                     shadowBlur: 25,
                                 }
 
@@ -361,7 +363,9 @@
                             calculable: true,
                             seriesIndex: [0],
                             inRange: {
-                                color: ['#24CFF4', '#2E98CA', '#1E62AC']
+                                color: ['orangered', 'yellow', 'lightskyblue']
+                                // color: ['lightskyblue', 'yellow', 'orangered']
+                                // color: ['#24CFF4', '#2E98CA', '#1E62AC']
                             },
                             textStyle: {
                                 color: '#24CFF4'
@@ -478,10 +482,16 @@
                                         barBorderRadius: 30,
                                         color: new echarts.graphic.LinearGradient(0, 0, 1, 0, [{
                                             offset: 0,
-                                            color: 'rgb(57,89,255,1)'
+                                            // color: 'rgb(57,89,255,1)'
+                                            color: 'orangered'
+                                        }, {
+                                            offset: 0.5,
+                                            // color: 'rgb(46,200,207,1)'
+                                            color: 'yellow'
                                         }, {
                                             offset: 1,
-                                            color: 'rgb(46,200,207,1)'
+                                            // color: 'rgb(46,200,207,1)'
+                                            color: 'lightskyblue'
                                         }]),
                                     },
                                     emphasis: {
