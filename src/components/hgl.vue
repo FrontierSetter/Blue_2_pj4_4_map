@@ -208,12 +208,14 @@
                         label: {
                             normal: {
                                 textStyle: {
-                                    color: 'rgb(179, 239, 255)'
+                                    color: 'rgb(179, 239, 255)',
+                                    fontSize: 20
                                 }
                             },
                             emphasis: {
                                 textStyle: {
-                                    color: '#fff'
+                                    color: '#fff',
+                                    fontSize: 20
                                 }
                             }
                         },
@@ -301,9 +303,9 @@
                         },
                         geo: {
                             map: this.parentInfo.length === 1 ? 'china' : 'map',
-                            zoom: 1.1,
+                            zoom: 0.8,
                             roam: true,
-                            center: this.parentInfo.length === 1 ? ['118.83531246', '32.0267395887'] : false,
+                            center: this.parentInfo.length === 1 ? ['118.83531246', '35.0267395887'] : false,
                             tooltip: {
                                 trigger: 'item',
                                 formatter: (p) => {
@@ -320,8 +322,10 @@
                             label: {
                                 normal: {
                                     show: true,
-                                    // color: "black", //省份标签字体颜色
-                                    color: "rgb(249, 249, 249)", //省份标签字体颜色
+                                    color: "black", //省份标签字体颜色
+                                    // color: "rgb(249, 249, 249)", //省份标签字体颜色
+                                    fontWeight: 400,
+                                    fontSize: 30,
                                     formatter: p => {
                                         switch (p.name) {
                                             case '内蒙古自治区':
@@ -340,7 +344,8 @@
                                                 p.name = "广西"
                                                 break;
                                             case '香港特别行政区':
-                                                p.name = "香港"
+                                                p.name = "香港";
+                                                p.color = "white"
                                                 break;
                                             case '澳门特别行政区':
                                                 p.name = "澳门"
@@ -354,6 +359,8 @@
                                 emphasis: {
                                     show: true,
                                     color: '#f75a00',
+                                    fontWeight: 800,
+                                    fontSize: 40,
                                 }
                             },
                             itemStyle: {
@@ -451,7 +458,7 @@
                             axisLabel: {
                                 margin: 2,
                                 textStyle: {
-                                    fontSize: 12,
+                                    fontSize: 18,
                                     color: '#c0e6f9'
                                 }
                             },
@@ -471,6 +478,7 @@
                             axisLabel: {
                                 interval: 0,
                                 textStyle: {
+                                    fontSize: 23,
                                     color: '#c0e6f9'
                                 }
                             },
